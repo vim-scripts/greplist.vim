@@ -1,0 +1,19 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2007
+
+This plug-in is for someone who often does multi-file search in multiple locations and these locations often change when for example you work on several different projects.  It helps to maintain a list of frequently used vimgrep locations and defines commands to edit a list and to perform a search in the selected locations.
+
+:GrepListConfig command loads a list for editing.  A list is kept in
+"$HOME/_vimgrep" file or in "$VIM/_vimgrep" file if $HOME is not defined.  If "_vimgrep" file does not exist or empty, a sample list is created.  Status line shows useful normal mode mappings:
+  'q' - abandon any changes and wipe the buffer
+  's' - save the changes and wipe the buffer
+  ' ' - select/deselect current line (selected lines start with '+')
+
+:GrepListFind(mode) command prompts for the string to find and starts the vimgrep search in the selected locations.  The default value for the search string is either the current visual selection (mode != 0) or the current word (mode == 0).  Plug-in automatically surrounds the search string with '/' and adds 'j' option.
+
+As usual, it is more convenient to create mappings for these commands.  For example:
+noremap <F8> :GrepListFind 0<CR>
+inoremap <F8> <C-O>:GrepListFind 0<CR>
+vnoremap <F8> <C-C>:GrepListFind 1<CR>
+
+For more information please see the source code -- it is small and easy to read.
+
